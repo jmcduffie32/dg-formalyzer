@@ -1,0 +1,49 @@
+<html>
+
+<head>
+  <meta http-equiv="Content-Type"
+        content="text/html;charset=UTF-8">
+  <link rel="stylesheet"
+        href="styles.css">
+</head>
+
+<body>
+  <video id="video"
+         src="mcbeth.mp4"></video>
+  <canvas id="overlay"></canvas>
+  <div id="controls">
+    <button id="play"
+            type="button"
+            onclick="play()">Play</button>
+    <label for="show-video">Show Video</label>
+    <input type="checkbox"
+           name="show-video"
+           checked
+           id="show-video">
+    <button id="playback"
+            onclick="playback(0)">Play</button>
+    <select name="player"
+            id="player">
+      <option value="mcbeth.mp4">Paul McBeth</option>
+      <option value="eagle.mp4">Eagle McMahon</option>
+      <option value="ricky.mp4">Ricky Wysocki</option>
+      <option value="kajiyama.mp4">Manabu Kajiyama</option>
+    </select>
+    <button type="button" onclick="savePlayerForm()">Save Analysis</button>
+    <div style="margin-top: 10px">
+      <a href="/compare.html">Check Out Some Comparisons</a>
+    </div>
+  </div>
+  <script defer
+          src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-core"></script>
+  <script defer
+          src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-converter"></script>
+  <script defer
+          src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-webgl"></script>
+  <script defer
+          src="https://cdn.jsdelivr.net/npm/@tensorflow-models/pose-detection"></script>
+  <script defer
+          src="script.js"></script>
+</body>
+
+</html>

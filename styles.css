@@ -1,0 +1,29 @@
+#video {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+#overlay {
+  height: 720px;
+  width: 1280px;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.playerCanvas {
+  height: 288px;
+  width: 512px;
+}
+
+#controls {
+  position: absolute;
+  top: 730px;
+  left: 0px;
+  padding-left: 10px;
+}
+
+.hidden {
+  display: none;
+}
