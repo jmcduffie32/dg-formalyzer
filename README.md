@@ -10,3 +10,4 @@ Video clips are taken from https://www.youtube.com/watch?v=AwYvav4xCR8
 - [ ] add the ability to upload and analyze your own video
 - [ ] clean up the html and css
 - [ ] use some sane file structure
+- [ ] scale uploaded videos

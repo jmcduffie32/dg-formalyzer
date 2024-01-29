@@ -12,16 +12,20 @@
          src="mcbeth.mp4"></video>
   <canvas id="overlay"></canvas>
   <div id="controls">
-    <button id="play"
+    <button id="play-btn"
+            class="disabled"
+            disabled
+            style="display:block"
             type="button"
-            onclick="play()">Play</button>
-    <label for="show-video">Show Video</label>
-    <input type="checkbox"
-           name="show-video"
-           checked
-           id="show-video">
-    <button id="playback"
-            onclick="playback(0)">Play</button>
+            onclick="play()">Loading Model...</button>
+    <label for="show-video"
+           style="display:block">Show Video
+      <input type="checkbox"
+             name="show-video"
+             checked
+             id="show-video">
+    </label>
+    <h2>Analyze Some Pro Forms</h2>
     <select name="player"
             id="player">
       <option value="mcbeth.mp4">Paul McBeth</option>
@@ -29,7 +33,14 @@
       <option value="ricky.mp4">Ricky Wysocki</option>
       <option value="kajiyama.mp4">Manabu Kajiyama</option>
     </select>
-    <button type="button" onclick="savePlayerForm()">Save Analysis</button>
+    <!-- <button type="button"
+            onclick="savePlayerForm()">Save Analysis</button> -->
+    <div>
+      <h2>Analyze Your Own Form</h2>
+      <input type="file"
+             name="viewer-file"
+             id="file-input">
+    </div>
     <div style="margin-top: 10px">
       <a href="/compare.html">Check Out Some Comparisons</a>
     </div>

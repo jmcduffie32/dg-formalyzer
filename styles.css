@@ -2,6 +2,8 @@
   position: absolute;
   left: 0;
   top: 0;
+  height: 720;
+  width: 1280;
 }
 
 #overlay {
@@ -21,9 +23,14 @@
   position: absolute;
   top: 730px;
   left: 0px;
-  padding-left: 10px;
+  padding: 10px;
+  padding-top: 0px;
 }
 
 .hidden {
   display: none;
+}
+
+.disabled {
+  color: grey;
 }

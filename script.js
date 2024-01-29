@@ -2,19 +2,26 @@ const video = document.getElementById("video");
 const canvas = document.getElementById("overlay");
 const showVideo = document.getElementById("show-video");
 const playerSelect = document.getElementById("player");
+const fileInput = document.getElementById("file-input");
+const playBtn = document.getElementById('play-btn');
 const ctx = canvas.getContext("2d");
 canvas.height = 720;
 canvas.width = 1280;
-let detector;
 let capturePoses = false;
 let keypoints = [];
+let detector, maxHeight, maxWidth;
+
+function scale ({x, y}) {
+  return {x: (x / maxWidth) * canvas.width, y: (y / maxHeight) * canvas.height }
+}
 
 async function getPoses() {
   const poses = await detector.estimatePoses(video);
 
   for (let pose of poses) {
-    keypoints.push(pose.keypoints);
-    drawPoints(pose.keypoints);
+    const scaled = pose.keypoints.map(scale)
+    keypoints.push(scaled);
+    drawPoints(scaled);
   }
   if (capturePoses) {
     requestAnimationFrame(getPoses);
@@ -55,9 +62,6 @@ function drawPoints(points) {
 
 async function play () {
   keypoints = [];
-  detector = detector || await poseDetection.createDetector(poseDetection.SupportedModels.MoveNet, {
-        modelType: poseDetection.movenet.modelType.SINGLEPOSE_THUNDER,
-      });
   capturePoses = true;
   video.play();
   requestAnimationFrame(getPoses);
@@ -103,3 +107,28 @@ function savePlayerForm() {
   a.click();
   a.remove();
 }
+
+video.addEventListener('loadedmetadata', event => {
+  maxWidth = video.videoWidth;
+  maxHeight = video.videoHeight;
+});
+
+fileInput.onchange = (e) => {
+  video.src = URL.createObjectURL(e.target.files[0])
+}
+
+function enableBtn(btn) {
+  btn.classList.remove('disabled');
+  btn.disabled = false;
+  btn.textContent = 'Play';
+}
+
+poseDetection
+  .createDetector(poseDetection.SupportedModels.MoveNet, {
+    modelType: poseDetection.movenet.modelType.SINGLEPOSE_THUNDER,
+  })
+  .then((res) => {
+    detector = res;
+    console.log("detector loaded");
+    enableBtn(playBtn);
+  });
